@@ -1,7 +1,5 @@
 package Oppgave1;
 
-import java.util.Iterator;
-
 import adt.MengdeADT;
 
 public class TabellMengde<T> implements MengdeADT<T> {
