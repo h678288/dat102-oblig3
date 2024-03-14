@@ -35,7 +35,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
-		if (erTom()) {
+		if (annenMengde.erTom()) {
 			return true;
 		}
 		for (int i = 0; i < antall; i++) {
@@ -73,7 +73,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
-		TabellMengde<T> nyTab = new TabellMengde<T>();
+		MengdeADT<T> nyTab = new TabellMengde<T>();
 		if (annenMengde.erTom()) {
 			for (int i = 0; i < antall; i++) {
 				nyTab.leggTil(tabell[i]);
@@ -90,7 +90,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public MengdeADT<T> union(MengdeADT<T> annenMengde) {
-		TabellMengde<T> nyTab = new TabellMengde<T>();
+		MengdeADT<T> nyTab = new TabellMengde<T>();
 		for (int i = 0; i < antall; i++) {
 			nyTab.leggTil(tabell[i]);
 		}
@@ -109,7 +109,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-		TabellMengde<T> nyTab = new TabellMengde<T>();
+		MengdeADT<T> nyTab = new TabellMengde<T>();
 		for (int i = 0; i < antall; i++) {
 			nyTab.leggTil(tabell[i]);
 		}  
