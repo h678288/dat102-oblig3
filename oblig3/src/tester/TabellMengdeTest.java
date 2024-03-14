@@ -6,11 +6,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Oppgave1.TabellMengde;
+import adt.MengdeADT;
 
 class TabellMengdeTest {
 
-	TabellMengde<Integer> mengde = new TabellMengde<>();
-	TabellMengde<Integer> mengde2 = new TabellMengde<>();
+	MengdeADT<Integer> mengde = new TabellMengde<>();
+	MengdeADT<Integer> mengde2 = new TabellMengde<>();
 	
 	
 	@BeforeEach
@@ -76,7 +77,7 @@ class TabellMengdeTest {
 	@Test
 	void testErDisjunkt() {
 		 assertFalse(mengde.erDisjunkt(mengde2));
-		 TabellMengde<Integer> mengde3 = new TabellMengde<>();
+		 MengdeADT<Integer> mengde3 = new TabellMengde<>();
 		 mengde3.leggTil(6);
 		 mengde3.leggTil(7);
 		 mengde3.leggTil(8);
@@ -93,7 +94,7 @@ class TabellMengdeTest {
 	
 	@Test
 	void testSnitt() {
-		TabellMengde<Integer> mengde3 = new TabellMengde<>();
+		MengdeADT<Integer> mengde3 = new TabellMengde<>();
 		mengde3.leggTil(1);
 		mengde3.leggTil(2);
 	
