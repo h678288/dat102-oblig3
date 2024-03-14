@@ -110,13 +110,20 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	@Override
 	public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
 		TabellMengde<T> nyTab = new TabellMengde<T>();
-		if (annenMengde.erTom()) {
+		for (int i = 0; i < antall; i++) {
+			nyTab.leggTil(tabell[i]);
+		}  
+		if (annenMengde.erTom() || annenMengde.erLik(nyTab)) {
+			return nyTab;
+		} else {
 			for (int i = 0; i < antall; i++) {
-				nyTab.leggTil(tabell[i]);
+				T element = tabell[i];
+				if(annenMengde.inneholder(element)) {
+					nyTab.fjern(element);
+				}
 			}
-		
+			
 		}
-		
 		return nyTab;
 	}
 
