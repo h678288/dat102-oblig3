@@ -94,7 +94,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 		for (int i = 0; i < antall; i++) {
 			nyTab.leggTil(tabell[i]);
 		}
-		if(annenMengde.erTom()) {
+		if (annenMengde.erTom()) {
 			return nyTab;
 		}
 
@@ -110,19 +110,12 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	@Override
 	public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
 		MengdeADT<T> nyTab = new TabellMengde<T>();
+
 		for (int i = 0; i < antall; i++) {
-			nyTab.leggTil(tabell[i]);
-		}  
-		if (annenMengde.erTom() || annenMengde.erLik(nyTab)) {
-			return nyTab;
-		} else {
-			for (int i = 0; i < antall; i++) {
-				T element = tabell[i];
-				if(annenMengde.inneholder(element)) {
-					nyTab.fjern(element);
-				}
+			T element = tabell[i];
+			if (!annenMengde.inneholder(element)) {
+				nyTab.leggTil(element);
 			}
-			
 		}
 		return nyTab;
 	}
@@ -139,7 +132,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	@Override
 	public void leggTilAlleFra(MengdeADT<T> annenMengde) {
 		for (int i = 0; i < antall; i++) {
-			if(!inneholder(annenMengde.tilTabell()[i])) {
+			if (!inneholder(annenMengde.tilTabell()[i])) {
 				tabell[antall] = annenMengde.tilTabell()[i];
 				antall++;
 			}
@@ -151,12 +144,12 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	public T fjern(T element) {
 		for (int i = 0; i < antall; i++) {
 			if (tabell[i].equals(element)) {
-	            for (int j = i; j < antall - 1; j++) {
-	                tabell[j] = tabell[j + 1];
-	            }
-	            tabell[antall - 1] = null;
-	            antall--; 
-	            return element; 
+				for (int j = i; j < antall - 1; j++) {
+					tabell[j] = tabell[j + 1];
+				}
+				tabell[antall - 1] = null;
+				antall--;
+				return element;
 			}
 		}
 		return null;
@@ -164,14 +157,14 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public T[] tilTabell() {
-	    @SuppressWarnings("unchecked")
+		@SuppressWarnings("unchecked")
 		T[] nyTab = (T[]) new Object[antall];
 
-	    for (int i = 0; i < antall; i++) {
-	        nyTab[i] = tabell[i];
-	    }
+		for (int i = 0; i < antall; i++) {
+			nyTab[i] = tabell[i];
+		}
 
-	    return nyTab;
+		return nyTab;
 
 	}
 
