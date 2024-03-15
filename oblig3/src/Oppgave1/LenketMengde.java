@@ -94,6 +94,7 @@ public class LenketMengde<T> implements MengdeADT<T> {
 	@Override
 	public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
 		MengdeADT<T> nyLenke = new LenketMengde<T>();
+		
 		Node temp = forste;
 		while (temp != null) {
 			if (annenMengde.inneholder(temp.data)) {

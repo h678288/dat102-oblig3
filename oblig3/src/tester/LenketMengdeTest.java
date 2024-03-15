@@ -2,6 +2,8 @@ package tester;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,8 +45,8 @@ class LenketMengdeTest {
 
 	@Test
 	void TestFjern() {
-		lenke.fjern(1);
-		assertFalse(lenke.inneholder(1));
+		lenke.fjern(5);
+		assertFalse(lenke.inneholder(5));
 	}
 
 	@Test
@@ -86,20 +88,21 @@ class LenketMengdeTest {
 
 	@Test
 	void testTilTabell() {
-		Integer[] tabell = { 1, 2, 3, 4, 5 };
+		Integer[] tabell = { 5, 4, 3, 2, 1 };
 		assertArrayEquals(tabell, lenke.tilTabell());
 	}
 
 	@Test
 	void testSnitt() {
-		MengdeADT<Integer> lenke3 = new LenketMengde<>();
-		lenke3.leggTil(1);
-		lenke3.leggTil(2);
+	    MengdeADT<Integer> lenke3 = new LenketMengde<>();
+	    lenke3.leggTil(2);
+	    lenke3.leggTil(1);
 
-		lenke.fjern(5);
-		lenke.fjern(3);
-		lenke.fjern(4);
-		assertArrayEquals(lenke3.tilTabell(), lenke.snitt(lenke2).tilTabell());
+	    lenke.fjern(5);
+	    lenke.fjern(3);
+	    lenke.fjern(4);
+
+	    assertArrayEquals(lenke3.tilTabell(), lenke.snitt(lenke2).tilTabell());
 	}
 
 	@Test
