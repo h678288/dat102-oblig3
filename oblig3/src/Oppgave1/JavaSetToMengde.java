@@ -5,10 +5,10 @@ import java.util.Set;
 
 import adt.MengdeADT;
 
-public class JavaSetToMengde<T>implements MengdeADT<T> {
+public class JavaSetToMengde<T> implements MengdeADT<T> {
 
 	private Set<T> set;
-	
+
 	public JavaSetToMengde() {
 		set = new HashSet<>();
 	}
@@ -25,18 +25,18 @@ public class JavaSetToMengde<T>implements MengdeADT<T> {
 
 	@Override
 	public boolean erDelmengdeAv(MengdeADT<T> annenMengde) {
-		
+
 		return false;
 	}
 
 	@Override
 	public boolean erLik(MengdeADT<T> annenMengde) {
-		if(annenMengde == null || antallElementer() != annenMengde.antallElementer()) {
+		if (annenMengde == null || antallElementer() != annenMengde.antallElementer()) {
 			return false;
 		}
-		
+
 		for (T t : set) {
-			if(!annenMengde.inneholder(t)) {
+			if (!annenMengde.inneholder(t)) {
 				return false;
 			}
 		}
@@ -45,37 +45,63 @@ public class JavaSetToMengde<T>implements MengdeADT<T> {
 
 	@Override
 	public boolean erDisjunkt(MengdeADT<T> annenMengde) {
-		// TODO Auto-generated method stub
-		return false;
+		for (T t : set) {
+			if (annenMengde.inneholder(t)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
-	@Override
-	public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		@Override
+		public MengdeADT<T> snitt(MengdeADT<T> annenMengde) {
+			MengdeADT<T> nyMengde = new JavaSetToMengde<>();
+			for (T t : set) {
+				if (annenMengde.inneholder(t)) {
+					nyMengde.leggTil(t);
+				}
+			}
+			return nyMengde;
+		}
 
 	@Override
 	public MengdeADT<T> union(MengdeADT<T> annenMengde) {
-		// TODO Auto-generated method stub
-		return null;
+		MengdeADT<T> nyMengde = new JavaSetToMengde<>();
+		if(this.erTom() && annenMengde.erTom()) {
+			return nyMengde;
+		}
+		nyMengde.leggTilAlleFra(this);
+		if (!annenMengde.erTom()) {
+			nyMengde.leggTilAlleFra(annenMengde);			
+		}
+		return nyMengde;
 	}
 
 	@Override
 	public MengdeADT<T> minus(MengdeADT<T> annenMengde) {
-		// TODO Auto-generated method stub
-		return null;
+		MengdeADT<T> nyMengde = new JavaSetToMengde<>();
+		if(this.erTom() && annenMengde.erTom()) {
+			return nyMengde;
+		}
+		
+		nyMengde.leggTilAlleFra(this);
+		
+		for (T t : set) {
+			if(annenMengde.inneholder(t)) {
+				nyMengde.fjern(t);
+			}
+		}
+		return nyMengde;
 	}
 
 	@Override
 	public void leggTil(T element) {
 		set.add(element);
-		
 	}
 
 	@Override
 	public void leggTilAlleFra(MengdeADT<T> annenMengde) {
-		if(annenMengde != null) {
+		if (annenMengde != null) {
 			T[] elementer = annenMengde.tilTabell();
 			for (T t : elementer) {
 				set.add(t);
@@ -106,6 +132,4 @@ public class JavaSetToMengde<T>implements MengdeADT<T> {
 		return set.size();
 	}
 
-	
-	
 }
